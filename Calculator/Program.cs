@@ -1,4 +1,8 @@
 ﻿using System;
+
+/// <summary>
+/// Calculator class that provides basic arithmetic operations
+/// </summary>
 class Calculator
 {
     public double Add(double a, double b) => a + b;
@@ -20,9 +24,6 @@ class MenuProgram
 
         var calc = new Calculator();
         bool keepRunning = true;
-
-        // intentional non-existent method call
-        calc.ValidateInputs();
 
         while (keepRunning)
         {
