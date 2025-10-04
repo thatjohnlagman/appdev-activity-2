@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// Calculator class that provides basic arithmetic operations
+/// </summary>
 class Calculator
 {
     public double Add(double a, double b) => a + b;
@@ -19,7 +22,7 @@ class MenuProgram
         Console.WriteLine("Hello, welcome to my app!");
         Console.WriteLine();
 
-        var calc = new Operations();
+        var calc = new Calculator();
         bool keepRunning = true;
 
         while (keepRunning)
@@ -48,7 +51,7 @@ class MenuProgram
         }
     }
 
-    static void RunBasicCalculator(Operations calc)
+    static void RunBasicCalculator(Calculator calc)
     {
         Console.WriteLine();
         Console.WriteLine("=== Basic Calculator ===");
