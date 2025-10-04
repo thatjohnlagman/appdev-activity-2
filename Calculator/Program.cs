@@ -15,6 +15,19 @@ class Calculator
     }
 }
 
+class TipCalculator
+{
+    public double CalculateTip(double billAmount, double tipPercentage)
+    {
+        return billAmount * (tipPercentage / 100);
+    }
+    
+    public double CalculateTotal(double billAmount, double tipAmount)
+    {
+        return billAmount + tipAmount;
+    }
+}
+
 class MenuProgram
 {
     static void Main()
@@ -23,12 +36,14 @@ class MenuProgram
         Console.WriteLine();
 
         var calc = new Calculator();
+        var tipCalc = new TipCalculator();
         bool keepRunning = true;
 
         while (keepRunning)
         {
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("Press 1: Basic Calculator");
+            Console.WriteLine("Press 2: Tip Calculator");
             Console.WriteLine("Press 0: Exit");
             Console.Write("Enter your choice: ");
 
@@ -38,6 +53,9 @@ class MenuProgram
             {
                 case "1":
                     RunBasicCalculator(calc);
+                    break;
+                case "2":
+                    RunTipCalculator(tipCalc);
                     break;
                 case "0":
                     Console.WriteLine("Thank you for using my app. Goodbye!");
@@ -77,6 +95,37 @@ class MenuProgram
             };
 
             Console.WriteLine($"Result: {num1} {operation} {num2} = {result}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+
+        Console.WriteLine();
+        Console.WriteLine("Press any key to return to main menu...");
+        Console.ReadKey();
+        Console.WriteLine();
+    }
+
+    static void RunTipCalculator(TipCalculator tipCalc)
+    {
+        Console.WriteLine();
+        Console.WriteLine("=== Tip Calculator ===");
+
+        try
+        {
+            Console.Write("Enter bill amount: $");
+            double billAmount = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter tip percentage (e.g., 15 for 15%): ");
+            double tipPercentage = Convert.ToDouble(Console.ReadLine());
+
+            double tipAmount = tipCalc.CalculateTip(billAmount, tipPercentage);
+            double totalAmount = tipCalc.CalculateTotal(billAmount, tipAmount);
+
+            Console.WriteLine($"Bill Amount: ${billAmount:F2}");
+            Console.WriteLine($"Tip ({tipPercentage}%): ${tipAmount:F2}");
+            Console.WriteLine($"Total Amount: ${totalAmount:F2}");
         }
         catch (Exception ex)
         {
